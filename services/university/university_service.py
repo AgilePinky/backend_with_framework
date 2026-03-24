@@ -1,4 +1,3 @@
-from main import response
 from services.general.base_service import BaseService
 from services.university.helpers.grade_helper import GradeHelper
 from services.university.helpers.group_helper import GroupHelper
@@ -43,6 +42,6 @@ class UniversityService(BaseService):
         response = self.grade_helper.post_grade(data=grade_request.model_dump())
         return GradeResponse(**response.json())
 
-    def get_grade_stats(self, student_id, teacher_id, group_id) -> GradeStatisticResponse:
+    def get_grade_stats(self, student_id=None, teacher_id=None, group_id=None) -> GradeStatisticResponse:
         response = self.grade_helper.get_grade_stats(student_id, teacher_id, group_id)
         return GradeStatisticResponse(**response.json())

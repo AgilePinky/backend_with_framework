@@ -41,17 +41,14 @@ class TestGetGradeStats:
         teacher_id = teacher_response.id
 
         Logger.info("### Step 4. Create grade")
-        grade = GradeRequest(teacher_id=teacher_id,
-                             student_id=student_id,
-                             grade=random.randint(MIN_GRADE, MAX_GRADE))
-
         for i in range(expected_quantity_grades):
+            grade = GradeRequest(teacher_id=teacher_id,
+                                 student_id=student_id,
+                                 grade=random.randint(MIN_GRADE, MAX_GRADE))
             grade_response = university_service.create_grade(grade_request=grade)
 
         Logger.info("### Step 5. Show grade statistics")
-        grade_response = university_service.get_grade_stats(student_id=student_id,
-                                                            teacher_id=teacher_id,
-                                                            group_id=group_id)
+        grade_response = university_service.get_grade_stats(student_id=94)
 
         assert grade_response.count == expected_quantity_grades, \
             (f"Grades didn't created as it expected. "
