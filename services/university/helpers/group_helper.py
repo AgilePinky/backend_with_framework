@@ -11,6 +11,6 @@ class GroupHelper(BaseHelper):
         response = self.api_utils.post(self.ROOT_ENDPOINT, json=json)
         return response
 
-    def delete(self, item) -> requests.Response:
-        response = self.api_utils.delete(self.ROOT_ENDPOINT, item)
+    def delete(self, group) -> requests.Response:
+        response = self.api_utils.delete(self.ROOT_ENDPOINT, group)
         return response

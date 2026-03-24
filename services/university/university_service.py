@@ -43,6 +43,6 @@ class UniversityService(BaseService):
         response = self.grade_helper.post_grade(data=grade_request.model_dump())
         return GradeResponse(**response.json())
 
-    def get_stats_grade(self, data) -> GradeStatisticResponse:
-        response = self.grade_helper.get_grade_stats(data=data)
+    def get_grade_stats(self, student_id, teacher_id, group_id) -> GradeStatisticResponse:
+        response = self.grade_helper.get_grade_stats(student_id, teacher_id, group_id)
         return GradeStatisticResponse(**response.json())

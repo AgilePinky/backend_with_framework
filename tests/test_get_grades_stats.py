@@ -9,6 +9,7 @@ from services.university.models.group_request import GroupRequest
 from services.university.models.student_request import StudentRequest
 from services.university.models.teacher_request import TeacherRequest
 from services.university.university_service import UniversityService
+from utils.constants import MIN_GRADE, MAX_GRADE
 
 faker = Faker()
 expected_quantity_grades = 3
@@ -42,15 +43,15 @@ class TestGetGradeStats:
         Logger.info("### Step 4. Create grade")
         grade = GradeRequest(teacher_id=teacher_id,
                              student_id=student_id,
-                             grade=random.randint(0, 5))
+                             grade=random.randint(MIN_GRADE, MAX_GRADE))
 
         for i in range(expected_quantity_grades):
             grade_response = university_service.create_grade(grade_request=grade)
 
         Logger.info("### Step 5. Show grade statistics")
-        grade_response = university_service.get_stats_grade({"student_id": student_id,
-                                                             "teacher_id": teacher_id,
-                                                             "group_id": group_id})
+        grade_response = university_service.get_grade_stats(student_id=student_id,
+                                                            teacher_id=teacher_id,
+                                                            group_id=group_id)
 
         assert grade_response.count == expected_quantity_grades, \
             (f"Grades didn't created as it expected. "
