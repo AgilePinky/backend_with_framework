@@ -48,7 +48,9 @@ class TestGetGradeStats:
             grade_response = university_service.create_grade(grade_request=grade)
 
         Logger.info("### Step 5. Show grade statistics")
-        grade_response = university_service.get_grade_stats(student_id=94)
+        grade_response = university_service.get_grade_stats(student_id=student_id,
+                                                            teacher_id=teacher_id,
+                                                            group_id=group_id)
 
         assert grade_response.count == expected_quantity_grades, \
             (f"Grades didn't created as it expected. "
