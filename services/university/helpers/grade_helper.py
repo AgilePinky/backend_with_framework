@@ -14,11 +14,7 @@ class GradeHelper(BaseHelper):
         response = self.api_utils.post(self.ROOT_ENDPOINT, data=data)
         return response
 
-    def get_grade_stats(self, student_id, teacher_id, group_id) -> requests.Response:
-        params = {"student_id": student_id,
-                  "teacher_id": teacher_id,
-                  "group_id": group_id}
-
+    def get_grade_stats(self, params) -> requests.Response:
         response = self.api_utils.get_with_query(
             self.STATS_ENDPOINT, queries=params)
         return response

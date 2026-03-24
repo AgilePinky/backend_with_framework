@@ -9,7 +9,7 @@ from services.university.models.group_request import GroupRequest
 from services.university.models.student_request import StudentRequest
 from services.university.models.teacher_request import TeacherRequest
 from services.university.university_service import UniversityService
-from utils.constants import MIN_GRADE, MAX_GRADE
+from services.university.models.constants import MIN_GRADE, MAX_GRADE
 
 faker = Faker()
 expected_quantity_grades = 3

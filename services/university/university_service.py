@@ -43,5 +43,12 @@ class UniversityService(BaseService):
         return GradeResponse(**response.json())
 
     def get_grade_stats(self, student_id=None, teacher_id=None, group_id=None) -> GradeStatisticResponse:
-        response = self.grade_helper.get_grade_stats(student_id, teacher_id, group_id)
+        accepted_params = {'student_id': student_id,
+                           'teacher_id': teacher_id,
+                           'group_id': group_id}
+        params = {}
+        for key, value in accepted_params.items():
+            if value != None:
+                params[key] = value
+        response = self.grade_helper.get_grade_stats(params)
         return GradeStatisticResponse(**response.json())

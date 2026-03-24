@@ -51,13 +51,7 @@ class ApiUtils:
 
     @log_response
     def get_with_query(self, endpoint_url, queries, **kwargs):
-        query_url = "?"
-        for key, value in queries.items():
-            if value == None:
-                continue
-            query_url += f"{key}={value}&"
-        query_url = query_url.rstrip('&')
-        response = self.session.get(self.url + endpoint_url + f"{query_url}", **kwargs)
+        response = self.session.get(self.url + endpoint_url, params=queries, **kwargs)
         return response
 
     @log_response
