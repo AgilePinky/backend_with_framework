@@ -37,6 +37,7 @@ jobs:
           api-tests
         continue-on-error: true
 
+      # Генерация отчета
       - name: Generate & Deploy Allure report
         if: always()
         run: |
