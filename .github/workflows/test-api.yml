@@ -24,7 +24,7 @@ jobs:
 
       # Запуск API
       - name: Start API
-        run: docker-compose up -d
+        run: docker compose up -d
 
       # Запуск API
       - name: Run tests
