@@ -32,5 +32,5 @@ jobs:
           docker run --rm \
             --network="test-network" \
             -e AUTH_SERVICE_API_URL=http://auth:8000 \
-            -e UNIVERSITY_SERVICE_API_URL=http://university:8001 \
+            -e UNIVERSITY_SERVICE_API_URL=http://university:8000 \
             api-tests
