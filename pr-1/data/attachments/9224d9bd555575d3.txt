@@ -1,0 +1,26 @@
+INFO     logger:logger.py:29 Request: curl -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Content-Length: 152' -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=sarahsoto&password=rHfy%21ENC4%2A3Dn%21vWh4Wr37V4i%26oWhM&password_repeat=rHfy%21ENC4%2A3Dn%21vWh4Wr37V4i%26oWhM&email=uvelazquez%40example.net' http://auth:8000/auth/register/
+INFO     logger:logger.py:29 Response status code='201', elapsed_time='0:00:00.271683'
+{
+  "detail": "User registered"
+}
+
+INFO     logger:logger.py:29 Request: curl -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Content-Length: 66' -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=sarahsoto&password=rHfy%21ENC4%2A3Dn%21vWh4Wr37V4i%26oWhM' http://auth:8000/auth/login/
+INFO     logger:logger.py:29 Response status code='200', elapsed_time='0:00:00.311864'
+{
+  "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsInVzZXJuYW1lIjoic2FyYWhzb3RvIiwiZXhwIjoxNzc0NDYxMzMxLCJpYXQiOjE3NzQ0NTQxMzF9.NvAk1EzAeLtD250L2QY86-WJWlVDfjAK8rvGKDO_DPSJXTwiQWzO7fZP_iU9oDmV794ZlguBh-sMJIlKsDJAdtmPdTdCMNZA7VwF5NX2b6ECFBzf4jKdC8IrYdd1of4-blTpZihiw4fanTZ-9fBPlOCUNBMBIjlKTPFcYMYLjoNtYpMj81Y5OtS0ANuJKN4rxj0ycLvkQX-q4r6kCGlGQVbx6n4QkpguqDfZO8ABMLkwd9_UK0VGfwGYlzygBeZ9K1re8F23tXjA4XmORJ1kmW_e7OUusbscZGZJy8mg-0yr2z8EMbNC6Dh9QdKBNe6YKQSYPx8ztSsSu_wBoMk64A",
+  "token_type": "Bearer"
+}
+INFO     logger:logger.py:29 Request: curl -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsInVzZXJuYW1lIjoic2FyYWhzb3RvIiwiZXhwIjoxNzc0NDYxMzMxLCJpYXQiOjE3NzQ0NTQxMzF9.NvAk1EzAeLtD250L2QY86-WJWlVDfjAK8rvGKDO_DPSJXTwiQWzO7fZP_iU9oDmV794ZlguBh-sMJIlKsDJAdtmPdTdCMNZA7VwF5NX2b6ECFBzf4jKdC8IrYdd1of4-blTpZihiw4fanTZ-9fBPlOCUNBMBIjlKTPFcYMYLjoNtYpMj81Y5OtS0ANuJKN4rxj0ycLvkQX-q4r6kCGlGQVbx6n4QkpguqDfZO8ABMLkwd9_UK0VGfwGYlzygBeZ9K1re8F23tXjA4XmORJ1kmW_e7OUusbscZGZJy8mg-0yr2z8EMbNC6Dh9QdKBNe6YKQSYPx8ztSsSu_wBoMk64A' http://auth:8000/users/me/
+INFO     logger:logger.py:29 Response status code='200', elapsed_time='0:00:00.003735'
+{
+  "id": 6,
+  "username": "sarahsoto",
+  "email": "uvelazquez@example.net",
+  "is_enabled": true
+}
+
+INFO     logger:logger.py:29 Request: curl -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Content-Length: 160' -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=sarahsoto&password=xcl_iwR%23%267Xney_%25k7tn%5E%2B80Axr%24j9&password_repeat=xcl_iwR%23%267Xney_%25k7tn%5E%2B80Axr%24j9&email=lawrence02%40example.org' http://auth:8000/auth/register/
+INFO     logger:logger.py:29 Response status code='409', elapsed_time='0:00:00.002729'
+{
+  "detail": "Username is already taken"
+}

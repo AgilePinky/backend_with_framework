@@ -1,0 +1,8 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","49","test_users_email_match","tests","2026-03-25","passed","2026-03-25","TestUsersEmailMatch","test_users_email_match","",""
+"","108","test_incorrect_edit_student","tests","2026-03-25","passed","2026-03-25","TestIncorrectEditStudent","test_incorrect_edit_students","",""
+"","89","test_change_teachers_subject_on_existing","tests","2026-03-25","passed","2026-03-25","TestChangeTeachersEmailOnExisting","test_change_teachers_subject_on_existing","",""
+"","3","test_create_group_anonym","tests","2026-03-25","passed","2026-03-25","TestGroupContract","test_group_contract","",""
+"","62","test_student_create","tests","2026-03-25","passed","2026-03-25","TestStudent","test_student_create","",""
+"","316","test_get_grade_stats","tests","2026-03-25","passed","2026-03-25","TestGetGradeStats","test_get_grades_stats","",""
+"","168","test_delete_group_with_students","tests","2026-03-25","passed","2026-03-25","TestDeleteGroupWithStudents","test_delete_group_with_students","",""

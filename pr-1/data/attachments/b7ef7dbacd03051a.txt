@@ -1,0 +1,31 @@
+WARNING  logger:logger.py:37 Service is not ready: HTTPConnectionPool(host='auth', port=8000): Max retries exceeded with url: /docs (Caused by NewConnectionError("HTTPConnection(host='auth', port=8000): Failed to establish a new connection: [Errno 111] Connection refused"))
+WARNING  logger:logger.py:37 Service is not ready: HTTPConnectionPool(host='auth', port=8000): Max retries exceeded with url: /docs (Caused by NewConnectionError("HTTPConnection(host='auth', port=8000): Failed to establish a new connection: [Errno 111] Connection refused"))
+INFO     logger:logger.py:29 Request: curl -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Content-Length: 147' -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=bmercado&password=%25YYv_ri%28Q4NivjvR%29%401fza8loSCUDw&password_repeat=%25YYv_ri%28Q4NivjvR%29%401fza8loSCUDw&email=lramos%40example.net' http://auth:8000/auth/register/
+INFO     logger:logger.py:29 Response status code='201', elapsed_time='0:00:00.300968'
+{
+  "detail": "User registered"
+}
+
+INFO     logger:logger.py:29 Request: curl -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Content-Length: 65' -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=bmercado&password=%25YYv_ri%28Q4NivjvR%29%401fza8loSCUDw' http://auth:8000/auth/login/
+INFO     logger:logger.py:29 Response status code='200', elapsed_time='0:00:00.315544'
+{
+  "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiYm1lcmNhZG8iLCJleHAiOjE3NzQ0NjEzMjcsImlhdCI6MTc3NDQ1NDEyN30.KgxFL8lORpwKuG-x2VKaAIt1veMqA7OFxbWRI_jDL9cOiC3QZ1J2n-tgzMDVbtEbsXzp8d5DNeE_oxze6x9NDMjSrN6Z5YeLshodgdcsluvuCLA-WHaLm82LuYSzycYTyT3-433RDrSVh0SkxXmdeWsVFry-PFRSu5nN3Kd2BRdkNohILGHuvEd12-TS0Q-0y-4a8Vmc4Ns88skZYdwYFkHoQgV7y8z8UHg9IvjpvvbaigFqitJyXDHjlB4JBvjkuVsfJeEBN1LbxR37C6HIKlrkkNPkObmq1lBdNd_0mqiXI6HH7OOCAIT7tqSXmuPW-V8IzrPT6PfrmH2nZyoxAw",
+  "token_type": "Bearer"
+}
+INFO     logger:logger.py:29 Request: curl -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiYm1lcmNhZG8iLCJleHAiOjE3NzQ0NjEzMjcsImlhdCI6MTc3NDQ1NDEyN30.KgxFL8lORpwKuG-x2VKaAIt1veMqA7OFxbWRI_jDL9cOiC3QZ1J2n-tgzMDVbtEbsXzp8d5DNeE_oxze6x9NDMjSrN6Z5YeLshodgdcsluvuCLA-WHaLm82LuYSzycYTyT3-433RDrSVh0SkxXmdeWsVFry-PFRSu5nN3Kd2BRdkNohILGHuvEd12-TS0Q-0y-4a8Vmc4Ns88skZYdwYFkHoQgV7y8z8UHg9IvjpvvbaigFqitJyXDHjlB4JBvjkuVsfJeEBN1LbxR37C6HIKlrkkNPkObmq1lBdNd_0mqiXI6HH7OOCAIT7tqSXmuPW-V8IzrPT6PfrmH2nZyoxAw' -H 'Content-Length: 70' -H 'Content-Type: application/json' -d '{"first_name": "Cynthia", "last_name": "Gibson", "subject": "Biology"}' http://university:8000/teachers/
+INFO     logger:logger.py:29 Response status code='201', elapsed_time='0:00:00.036933'
+{
+  "first_name": "Cynthia",
+  "last_name": "Gibson",
+  "subject": "Biology",
+  "id": 1
+}
+
+INFO     logger:logger.py:29 Request: curl -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiYm1lcmNhZG8iLCJleHAiOjE3NzQ0NjEzMjcsImlhdCI6MTc3NDQ1NDEyN30.KgxFL8lORpwKuG-x2VKaAIt1veMqA7OFxbWRI_jDL9cOiC3QZ1J2n-tgzMDVbtEbsXzp8d5DNeE_oxze6x9NDMjSrN6Z5YeLshodgdcsluvuCLA-WHaLm82LuYSzycYTyT3-433RDrSVh0SkxXmdeWsVFry-PFRSu5nN3Kd2BRdkNohILGHuvEd12-TS0Q-0y-4a8Vmc4Ns88skZYdwYFkHoQgV7y8z8UHg9IvjpvvbaigFqitJyXDHjlB4JBvjkuVsfJeEBN1LbxR37C6HIKlrkkNPkObmq1lBdNd_0mqiXI6HH7OOCAIT7tqSXmuPW-V8IzrPT6PfrmH2nZyoxAw' -H 'Content-Length: 71' -H 'Content-Type: application/json' -d '{"first_name": "Jacob", "last_name": "Hernandez", "subject": "Biology"}' http://university:8000/teachers/
+INFO     logger:logger.py:29 Response status code='201', elapsed_time='0:00:00.008546'
+{
+  "first_name": "Jacob",
+  "last_name": "Hernandez",
+  "subject": "Biology",
+  "id": 2
+}
