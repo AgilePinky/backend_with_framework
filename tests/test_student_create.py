@@ -3,7 +3,6 @@ import random
 from faker import Faker
 
 from logger.logger import Logger
-from main import response
 from services.university.models.base_student import DegreeEnum
 from services.university.models.group_request import GroupRequest
 from services.university.models.student_request import StudentRequest

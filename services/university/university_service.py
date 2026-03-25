@@ -48,7 +48,7 @@ class UniversityService(BaseService):
                            'group_id': group_id}
         params = {}
         for key, value in accepted_params.items():
-            if value != None:
+            if value is not None:
                 params[key] = value
         response = self.grade_helper.get_grade_stats(params)
         return GradeStatisticResponse(**response.json())

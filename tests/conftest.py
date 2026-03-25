@@ -3,7 +3,7 @@ import requests
 import pytest
 from faker import Faker
 
-
+from logger.logger import Logger
 from services.auth.auth_service import AuthService
 from services.auth.models.login_request import LoginRequest
 from services.auth.models.register_request import RegisterRequest
@@ -67,7 +67,8 @@ def auto_service_readiness():
         try:
             response = requests.get(AuthService.SERVICE_URL + "/docs")
             response.raise_for_status()
-        except:
+        except Exception as e:
+            Logger.warning(f"Service is not ready: {e}")
             time.sleep(1)
         else:
             break

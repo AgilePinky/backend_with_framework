@@ -1,0 +1,36 @@
+# .github/workflows/test-api.yml
+name: API Tests
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      # Ruff
+      - name: Ruff
+        run: |
+          pip install ruff 
+          ruff check . --output-format=github
+
+      # Сборка образа
+      - name: Build test image
+        run: docker build -t api-tests ./tests
+
+      # Запуск API
+      - name: Start API
+        run: docker-compose up -d
+
+      # Запуск API
+      - name: Run tests
+        run: |
+          docker run --rm \
+            --network="test-network" \
+            -e API_URL=http://api:8080 \
+            -e AUTH_URL=http://auth:8001 \
+            api-tests
