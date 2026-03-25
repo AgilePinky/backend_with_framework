@@ -44,7 +44,7 @@ jobs:
           echo "=== JSON files count ==="
           find allure-results -name "*.json" | wc -l
 
-      # Генерация отчета через Docker
+      # Генерация отчета через Docker с правильными правами
       - name: Generate Allure report
         if: always()
         run: |
@@ -55,6 +55,7 @@ jobs:
             docker run --rm \
               -v $(pwd)/allure-results:/allure-results \
               -v $(pwd)/allure-report:/allure-report \
+              -u $(id -u):$(id -g) \
               frankescobar/allure-docker-service \
               allure generate --clean /allure-results -o /allure-report
           else
