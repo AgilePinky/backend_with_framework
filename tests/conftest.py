@@ -74,3 +74,15 @@ def auto_service_readiness():
             break
     else:
         raise RuntimeError(f"Auth service wasn't started during '{timeout}' seconds.")
+
+    while time.time() < start_time + timeout:
+        try:
+            response = requests.get(UniversityService.SERVICE_URL + "/docs")
+            response.raise_for_status()
+        except Exception as e:
+            Logger.warning(f"Service is not ready: {e}")
+            time.sleep(1)
+        else:
+            break
+    else:
+        raise RuntimeError(f"University service wasn't started during '{timeout}' seconds.")
