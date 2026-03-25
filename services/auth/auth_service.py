@@ -1,3 +1,5 @@
+import os
+
 from services.auth.helpers.auth_helper import AuthHelper
 from services.auth.helpers.user_helper import UserHelper
 from services.auth.models.login_request import LoginRequest
@@ -9,7 +11,7 @@ from utils.api_utils import ApiUtils
 
 
 class AuthService(BaseService):
-    SERVICE_URL = "http://test-network:8000"
+    SERVICE_URL = os.getenv('AUTH_SERVICE_API_URL', 'http://localhost:8000')
 
     def __init__(self, api_utils: ApiUtils):
         super().__init__(api_utils)
