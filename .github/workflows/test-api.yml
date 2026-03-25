@@ -20,7 +20,7 @@ jobs:
 
       # Сборка образа
       - name: Build test image
-        run: docker build -t api-tests ./tests
+        run: docker build -t api-tests .
 
       # Запуск API
       - name: Start API
