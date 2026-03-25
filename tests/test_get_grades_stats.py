@@ -51,8 +51,8 @@ class TestGetGradeStats:
         grade_response = university_service.get_grade_stats(teacher_id=teacher_id,
                                                             student_id=student_id,
                                                             group_id=group_id)
-        # can be == 404, if analytic says so
-        assert grade_response.status_code != 404, \
+
+        assert grade_response.count == expected_quantity_grades, \
             (f"Grades didn't created as it expected. "
              f"Actual quantity of grades '{grade_response.count}', "
-             f"expected quantity of grades 'expected_quantity_grades'")
+             f"expected quantity of grades '{expected_quantity_grades}'")
