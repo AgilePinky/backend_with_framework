@@ -16,4 +16,4 @@ RUN mkdir -p /app/allure-results
 
 ENV PYTHONPATH=/app
 
-CMD ["pytest", "tests/", "-v", "-s"]
+CMD ["pytest", "tests/", "-v", "-s", "--alluredir=/app/allure-results"]
