@@ -29,6 +29,9 @@ jobs:
       # Запуск API
       - name: Run tests
         run: |
+          mkdir -p allure-results
+          chmod 777 allure-results
+          
           docker run --rm \
             --network="test-network" \
             -v $(pwd)/allure-results:/app/allure-results \
