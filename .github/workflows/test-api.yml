@@ -24,9 +24,9 @@ jobs:
       - name: Build test image
         run: docker build -t api-tests .
 
-  environment:
+  test:
     runs-on: ubuntu-latest
-    needs: [build]
+    needs: [service]
     environment: dev
     steps:
       - uses: actions/checkout@v3
@@ -43,20 +43,9 @@ jobs:
           UNIVERSITY_SERVICE_API_URL=${{ vars.UNIVERSITY_SERVICE_API_URL }}
           EOF
 
-  service:
-    runs-on: ubuntu-latest
-    needs: [environment]
-    environment: dev
-    steps:
-      - uses: actions/checkout@v3
       - name: Start API
         run: docker compose up -d
 
-  tests:
-    runs-on: ubuntu-latest
-    needs: [service]
-    environment: dev
-    steps:
       - uses: actions/checkout@v3
       - name: Create results directory
         run: mkdir -p allure-results
