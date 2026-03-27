@@ -8,7 +8,7 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
-
+    environment: dev
     steps:
       - uses: actions/checkout@v3
       - name: Ruff
@@ -18,14 +18,35 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    environment: dev
     steps:
       - uses: actions/checkout@v3
       - name: Build test image
         run: docker build -t api-tests .
 
-  service:
+  environment:
     runs-on: ubuntu-latest
     needs: [build]
+    environment: dev
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create .env file from GitHub secrets
+        run: |
+          cat > .env << EOF
+          POSTGRES_USER=${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_DB_AUTH=${{ vars.POSTGRES_DB_AUTH }}
+          POSTGRES_DB_UNIVERSITY=${{ vars.POSTGRES_DB_UNIVERSITY }}
+          AUTH_SERVICE_INTERNAL_URL=${{ vars.AUTH_SERVICE_INTERNAL_URL }}
+          AUTH_SERVICE_API_URL=${{ vars.AUTH_SERVICE_API_URL }}
+          UNIVERSITY_SERVICE_INTERNAL_URL=${{ vars.UNIVERSITY_SERVICE_INTERNAL_URL }}
+          UNIVERSITY_SERVICE_API_URL=${{ vars.UNIVERSITY_SERVICE_API_URL }}
+          EOF
+
+  service:
+    runs-on: ubuntu-latest
+    needs: [environment]
+    environment: dev
     steps:
       - uses: actions/checkout@v3
       - name: Start API
@@ -34,11 +55,12 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     needs: [service]
+    environment: dev
     steps:
       - uses: actions/checkout@v3
       - name: Create results directory
         run: mkdir -p allure-results
-        
+
       - name: Run tests
         run: |
           docker run --rm \
@@ -64,6 +86,7 @@ jobs:
   report:
     runs-on: ubuntu-latest
     needs: [tests]
+    environment: dev
     steps:
       - uses: actions/checkout@v3
 
@@ -91,6 +114,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: [report]
+    environment: dev
     steps:
       - uses: actions/checkout@v3
       - name: Deploy to GitHub Pages
