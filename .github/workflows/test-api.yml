@@ -42,7 +42,7 @@ jobs:
           UNIVERSITY_SERVICE_INTERNAL_URL=${{ vars.UNIVERSITY_SERVICE_INTERNAL_URL }}
           UNIVERSITY_SERVICE_API_URL=${{ vars.UNIVERSITY_SERVICE_API_URL }}
           EOF
-
+ 
       - name: Start API
         run: docker compose up -d
 
