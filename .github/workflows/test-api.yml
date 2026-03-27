@@ -1,0 +1,107 @@
+# .github/workflows/test-api.yml
+name: API Tests
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - uses: actions/checkout@v3
+      - name: Ruff
+        run: |
+          pip install ruff 
+          ruff check . --output-format=github
+          
+  test:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create .env file from GitHub secrets
+        run: |
+          cat > .env << EOF
+          POSTGRES_USER=${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_DB_AUTH=${{ vars.POSTGRES_DB_AUTH }}
+          POSTGRES_DB_UNIVERSITY=${{ vars.POSTGRES_DB_UNIVERSITY }}
+          AUTH_SERVICE_INTERNAL_URL=${{ vars.AUTH_SERVICE_INTERNAL_URL }}
+          AUTH_SERVICE_API_URL=${{ vars.AUTH_SERVICE_API_URL }}
+          UNIVERSITY_SERVICE_INTERNAL_URL=${{ vars.UNIVERSITY_SERVICE_INTERNAL_URL }}
+          UNIVERSITY_SERVICE_API_URL=${{ vars.UNIVERSITY_SERVICE_API_URL }}
+          EOF
+
+      - name: Start API
+        run: docker compose up -d
+
+      - uses: actions/checkout@v3
+      - name: Create results directory
+        run: mkdir -p allure-results
+
+      - name: Run tests
+        run: |
+          docker run --rm \
+            --network="test-network" \
+            -v $(pwd)/allure-results:/app/allure-results \
+            -e AUTH_SERVICE_API_URL=http://auth:8000 \
+            -e UNIVERSITY_SERVICE_API_URL=http://university:8000 \
+            api-tests
+        continue-on-error: true
+
+      - name: Check results
+        if: always()
+        run: |
+          echo "=== allure-results contents ==="
+          ls -la allure-results/
+          echo "=== JSON files count ==="
+          find allure-results -name "*.json" | wc -l
+
+      - name: Cleanup
+        if: always()
+        run: docker compose down -v
+
+  report:
+    runs-on: ubuntu-latest
+    needs: [test]
+    environment: dev
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Generate Allure report
+        if: always()
+        run: |
+          mkdir -p allure-report
+          
+          if [ -d "allure-results" ] && [ "$(ls -A allure-results)" ]; then
+            echo "✅ Generating report from results"
+            docker run --rm \
+              -v $(pwd)/allure-results:/allure-results \
+              -v $(pwd)/allure-report:/allure-report \
+              -u $(id -u):$(id -g) \
+              frankescobar/allure-docker-service \
+              allure generate --clean /allure-results -o /allure-report
+          else
+            echo "⚠️ No test results, creating placeholder"
+            echo "<html><body><h1>No test results available</h1></body></html>" > allure-report/index.html
+          fi
+          
+          echo "=== allure-report contents ==="
+          ls -la allure-report/
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [report]
+    environment: dev
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-report
+          destination_dir: pr-${{ github.event.pull_request.number }}
+          keep_files: true
