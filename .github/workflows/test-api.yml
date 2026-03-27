@@ -63,7 +63,7 @@ jobs:
     needs: [tests]
     steps:
       - name: Create results directory
-        run: mkdir -p allure-results
+        run: mkdir -p allure-results 
 
       - name: Generate Allure report
         if: always()
