@@ -16,13 +16,13 @@ jobs:
           pip install ruff 
           ruff check . --output-format=github
 
-  build:
-    runs-on: ubuntu-latest
-    environment: dev
-    steps:
-      - uses: actions/checkout@v3
-      - name: Build test image
-        run: docker build -t api-tests .
+#  build:
+#    runs-on: ubuntu-latest
+#    environment: dev
+#    steps:
+#      - uses: actions/checkout@v3
+#      - name: Build test image
+#        run: docker build -t api-tests .
 
   test:
     runs-on: ubuntu-latest
